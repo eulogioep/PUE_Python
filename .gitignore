@@ -1,0 +1,16 @@
+# .gitignore
+
+# Ignora los archivos de configuración de la IDE
+.idea/
+.vscode/
+
+# Ignora los archivos de byte compilados de Python
+__pycache__/
+*.py[cod]
+
+# Ignora los archivos de entorno virtual
+venv/
+.env/
+
+# Ignora los archivos de base de datos de SQLite si se utilizan
+*.sqlite3
