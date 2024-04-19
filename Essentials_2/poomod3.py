@@ -342,7 +342,146 @@
 # {'_ExampleClass__first': 4} 3
 #-------------------------------#
 
-######################################################################
+################## Ejemplo con método interno #############################################
+
+# class Classy:
+#     def visible(self):
+#         print("visible")
+    
+#     def __hidden(self):
+#         print("oculto")
 
 
+# obj = Classy()
+# obj.visible()
+
+# try:
+#     obj.__hidden()
+# except:
+#     print("fallido")
+
+# obj._Classy__hidden()
+
+
+########### La vida interna de clases y objetos ##############################
+
+# class Classy:
+#     varia = 1
+#     def __init__(self):
+#         self.var = 2
+
+#     def method(self):
+#         pass
+
+#     def __hidden(self):
+#         pass
+
+
+# obj = Classy()
+
+# print(obj.__dict__)
+# print(Classy.__dict__)
+
+########## Herencia Múltiple ####################################################
+
+# class SuperOne:
+#     pass
+
+
+# class SuperTwo:
+#     pass
+
+
+# class Sub(SuperOne, SuperTwo):
+#     pass
+
+
+# def printBases(clase):
+#     print('( ', end='')
+
+#     for x in clase.__bases__:
+#         print(x.__name__, end=' ')
+#     print(')')
+
+
+# printBases(SuperOne)
+# printBases(SuperTwo)
+# printBases(Sub)
+
+
+########### Método __str__ #################################################
+
+# class Timer:
+    
+#     def __str__(self):
+#         return "Esta es la representacion del objeto"
+    
+# print(Timer())
+
+####################### Crear un temporizador ######################################
+
+# import os, time
+
+# def limpiar_consola():
+
+#     os.system('cls' if os.name == 'nt' else 'clear')
+
+# def two_digits(val):
+#     s = str(val)
+#     if len(s) == 1:
+#         s = '0' + s
+#     return s
+
+
+# class Timer:
+#     def __init__(self, hours=0, minutes=0, seconds=0):
+#         self.__hours = hours
+#         self.__minutes = minutes
+#         self.__seconds = seconds
+
+#     def __str__(self):
+#         return two_digits(self.__hours) + ":" + \
+#                two_digits(self.__minutes) + ":" + \
+#                two_digits(self.__seconds)
+
+#     def next_second(self):
+#         self.__seconds += 1
+#         if self.__seconds > 59:
+#             self.__seconds = 0
+#             self.__minutes += 1
+#             if self.__minutes > 59:
+#                 self.__minutes = 0
+#                 self.__hours += 1
+#                 if self.__hours > 23:
+#                     self.__hours = 0
+
+#     def prev_second(self):
+#         self.__seconds -= 1
+#         if self.__seconds < 0:
+#             self.__seconds = 59
+#             self.__minutes -= 1
+#             if self.__minutes < 0:
+#                 self.__minutes = 59
+#                 self.__hours -= 1
+#                 if self.__hours < 0:
+#                     self.__hours = 23
+
+
+# # timer = Timer(23, 59, 59)
+# # print(timer)
+# # timer.next_second()
+# # print(timer)
+# # timer.prev_second()
+# # print(timer)
+
+# timer = Timer(23, 59, 59)
+
+# while True:
+#     limpiar_consola()
+#     timer.next_second()
+#     print(timer)
+#     time.sleep(1)
+    
+    
+###################################################
 
