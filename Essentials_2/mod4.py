@@ -1245,19 +1245,49 @@
 
 # ### Laboratorio #########
 
+# Ejemplo de formato de entrada:
+# 2024-23-04 14:53:00
+
 # from datetime import datetime
 
-# my_date = datetime(2020, 11, 4, 14, 53)
+# string_fecha = input('Introduce una fecha con el formato yyyy-dd-mm h:mm:ss: ') 
 
-# print(my_date.strftime("%Y/%m/%d %H:%M:%S"))
-# print(my_date.strftime("%y/%B/%d %H:%M:%S %p"))
-# print(my_date.strftime("%a, %Y %b %d"))
-# print(my_date.strftime("%A, %Y %B %d"))
-# print(my_date.strftime("Día de la semana: %w"))
-# print(my_date.strftime("Día del año: %j"))
-# print(my_date.strftime("Número de semana en el año: %W"))
+# mi_fecha = datetime.strptime(string_fecha, "%Y-%d-%m %H:%M:%S")
+
+# print(mi_fecha.strftime("%Y/%m/%d %H:%M:%S"))
+# print(mi_fecha.strftime("%y/%B/%d %H:%M:%S %p"))
+# print(mi_fecha.strftime("%a, %Y %b %d"))
+# print(mi_fecha.strftime("%A, %Y %B %d"))
+# print(mi_fecha.strftime("Día de la semana: %w"))
+# print(mi_fecha.strftime("Día del año: %j"))
+# print(mi_fecha.strftime("Número de semana en el año: %W"))
 
 
 #########################
 
+# import calendar
+
+# class MyCalendar(calendar.Calendar):
+#     def count_weekday_in_year(self, year, weekday):
+        
+#         current_month = 1
+#         number_of_days = 0
+
+#         while (current_month <= 12):
+#             print('mes', current_month)
+            
+#             for data in self.monthdays2calendar(year, current_month):
+#                 print(data[weekday])
+#                 if data[weekday][0] != 0:
+#                     number_of_days = number_of_days + 1
+
+#             current_month = current_month + 1
+#         return number_of_days
+
+# my_calendar = MyCalendar()
+# number_of_days = my_calendar.count_weekday_in_year(2019, calendar.MONDAY)
+
+# print(number_of_days)
+
+#######################################################
 
