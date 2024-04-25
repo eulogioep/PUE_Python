@@ -611,12 +611,401 @@
 # pack_fruits('plum', 'pear')
 
 
-#########################
+######################################################
+
+# class Parent:
+
+#     estatica = "Parent"
+
+#     @classmethod
+#     def class_method(cls):
+#         print(cls.estatica)
+
+#     # @staticmethod
+#     # def static_method():
+#     #     print(Parent.estatica)
+
+# class Child(Parent):
+#     estatica = "Child"
+
+# # Accessing the inherited class method from the Child class
+# Child.class_method()
+
+############ Laboratorio Clases Abstractas #####################################
+
+# import abc
+
+# class Scanner(abc.ABC):
+#     def scan_document(self):
+#         return 'Document was scanned'
+
+#     @abc.abstractmethod
+#     def get_scanner_status(self):
+#         pass
+
+# class Printer(abc.ABC):
+#     def print_document(self):
+#         return 'Document was printed'
+
+#     @abc.abstractmethod
+#     def get_printer_status(self):
+#         pass
+
+# class MFD1(Scanner, Printer):
+#     def get_scanner_status(self):
+#         return 'Max scan resolution is low, S/N: S001'
+
+#     def get_printer_status(self):
+#         return 'Max print resolution is low, S/N: P001'
+
+# class MFD2(Scanner, Printer):
+#     def get_scanner_status(self):
+#         return 'Max scan resolution is fine, S/N: S002'
+
+#     def get_printer_status(self):
+#         return 'Max print resolution is fine, S/N: P002'
+
+#     def get_history(self):
+#         return 'The history is...'
+
+# class MFD3(Scanner, Printer):
+#     def get_scanner_status(self):
+#         return 'Max scan resolution is high, S/N: S003'
+
+#     def get_printer_status(self):
+#         return 'Max print resolution is high, S/N: P003'
+
+#     def get_history(self):
+#         return 'The history is...'
+
+#     def send_fax(self):
+#         print('sending fax')
+
+#     def receive_fax(self):
+#         print('receiving fax')
+# mfd1 = MFD1()
+# print(mfd1.print_document())
+# print(mfd1.get_printer_status())
+
+# mfd2 = MFD2()
+# print(mfd2.print_document())
+# print(mfd2.get_printer_status())
+
+# mfd3 = MFD3()
+# print(mfd3.print_document())
+# print(mfd3.get_printer_status())
 
 
+###### Laboratorio Decoradores ######################################
+
+# from datetime import datetime
+
+# def time_stamping_machine(own_function):
+#     def internal_wrapper(*args, **kwargs):
+#         timestamp = datetime.now()
+#         string_timestamp = timestamp.strftime('%Y-%m-%d %H:%M:%S')
+#         print()
+#         print(string_timestamp)
+#         return own_function(*args, **kwargs)
+#     return internal_wrapper
+
+# @time_stamping_machine
+# def simple_hello():
+#     print("Hello from simple function!")
+
+# @time_stamping_machine
+# def add_two_objects(n1, n2):
+#     return n1 + n2
+
+# @time_stamping_machine
+# def multiply_two_objects(n1, n2):
+#     return n1 * n2
+
+# simple_hello()
+# print('Result:', add_two_objects('Hello', 'Python'))
+# print('Result:', add_two_objects(100, 88))
+# print('Result:', multiply_two_objects(100, 88))
 
 
+#######################################################
+
+# # importando librerías
+# import time
+# import math
+# import random
+
+# # decorador para calcular el tiempo de ejecución de cualquier función
+# def calcular_tiempo(func):
+#     def medir(*args, **kwargs):
+	
+#           # calculando el tiempo antes de ejecutar la función
+#           inicio = time.time()
+          
+#           # pausar la ejecución un cierto número de segundos para simular una función más lenta
+#           # así podremos ver mejor la diferencia de tiempo
+#           time.sleep(random.randint(1,10))
+          
+#           func(*args, **kwargs)
+
+# 		  # calculando el tiempo después de ejecutar la función
+#           final = time.time()
+#           print("Tiempo de ejecución de la función", func.__name__,":", round(final - inicio,3), "milisegundos")
+
+#     return medir
+
+# # el decorador puede añadirse a cualquier función,
+# # en éste caso para calcular el factorial
+
+# @calcular_tiempo
+# def factorial(num):
+
+#  	print(math.factorial(num))
+
+# # llamando a la función
+# factorial(1000)
+
+#########################################################################
+
+# class RelojDeLujo:
+#     relojes_creados = 0
+
+#     def __init__(self):
+#         RelojDeLujo.relojes_creados += 1
+
+#     @classmethod
+#     def recuperar_numero_relojes_creados(cls):
+#         return cls.relojes_creados
+
+#     @classmethod
+#     def con_grabado(cls, texto):
+#         if RelojDeLujo.validar_texto(texto):
+#             _reloj = cls()
+#             _reloj.texto = texto
+#             return _reloj
+#         else:
+#             raise Exception('"' + texto + '" - No cumple con la regla de letras y números')
+
+#     @staticmethod
+#     def validar_texto(texto):
+#         if len(texto) > 40:
+#             return False
+#         if not texto.isalpha():
+#             return False
+#         return True
+# print('Relojes creados hasta ahora:', RelojDeLujo.recuperar_numero_relojes_creados())
+# w1 = RelojDeLujo()
+# print('Relojes creados hasta ahora:', RelojDeLujo.recuperar_numero_relojes_creados())
+# w2 = RelojDeLujo.con_grabado('Alabama')
+# print('Creado reloj con grabado "Alabama", el total ahora es de', RelojDeLujo.recuperar_numero_relojes_creados())
+
+# try:
+#     w3 = RelojDeLujo.con_grabado('foo@foo.com')
+# except Exception as e:
+#     print('El problema es que el texto ', e)
+
+# print('Relojes creados hasta ahora:', RelojDeLujo.recuperar_numero_relojes_creados())
+
+##################################################
+
+# class RelojDeLujo:
+#     __relojes_creados = 0
+
+#     def __init__(self):
+#         RelojDeLujo.__relojes_creados += 1
+
+#     @classmethod
+#     def recuperar_numero_relojes_creados(cls):
+#         return cls.__relojes_creados
+
+#     @classmethod
+#     def con_grabado(cls, texto):
+#         if cls.validar_texto(texto):
+#             _reloj = cls()
+#             _reloj.texto = texto
+#             return _reloj
+#         else:
+#             raise Exception('"' + texto + '" - No cumple con la regla de letras y números')
+
+#     @staticmethod
+#     def validar_texto(texto):
+#         if len(texto) > 40:
+#             return False
+#         if not texto.isalpha():
+#             return False
+#         return True
+# print('Relojes creados hasta ahora:', RelojDeLujo.recuperar_numero_relojes_creados())
+# w1 = RelojDeLujo()
+# print('Relojes creados hasta ahora:', RelojDeLujo.recuperar_numero_relojes_creados())
+# w2 = RelojDeLujo.con_grabado('Alabama')
+# print('Creado reloj con grabado "Alabama", el total ahora es de', RelojDeLujo.recuperar_numero_relojes_creados())
+
+# try:
+#     w3 = RelojDeLujo.con_grabado('foo@foo.com')
+# except Exception as e:
+#     print('El problema es que el texto ', e)
+
+# print('Relojes creados hasta ahora:', RelojDeLujo.recuperar_numero_relojes_creados())
+
+#####################################################
+
+# import abc
+
+# class Scanner(abc.ABC):
+#     def scan_document(self):
+#         return 'Document was scanned'
+
+#     @abc.abstractmethod
+#     def get_scanner_status(self):
+#         pass
+
+# class Printer(abc.ABC):
+#     def print_document(self):
+#         return 'Document was printed'
+
+#     @abc.abstractmethod
+#     def get_printer_status(self):
+#         pass
+# class MFD1(Scanner, Printer):
+#     def get_scanner_status(self):
+#         return 'Max scan resolution is low, S/N: S001'
+
+#     def get_printer_status(self):
+#         return 'Max print resolution is low, S/N: P001'
+
+# class MFD2(Scanner, Printer):
+#     def get_scanner_status(self):
+#         return 'Max scan resolution is fine, S/N: S002'
+
+#     def get_printer_status(self):
+#         return 'Max print resolution is fine, S/N: P002'
+
+#     def get_history(self):
+#         return 'The history is...'
+
+# class MFD3(Scanner, Printer):
+#     def get_scanner_status(self):
+#         return 'Max scan resolution is high, S/N: S003'
+
+#     def get_printer_status(self):
+#         return 'Max print resolution is high, S/N: P003'
+
+#     def get_history(self):
+#         return 'The history is...'
+
+#     def send_fax(self):
+#         print('sending fax')
+
+#     def receive_fax(self):
+#         print('receiving fax')
+# mfd1 = MFD1()
+# print(mfd1.print_document())
+# print(mfd1.get_printer_status())
+
+# mfd2 = MFD2()
+# print(mfd2.print_document())
+# print(mfd2.get_printer_status())
+
+# mfd3 = MFD3()
+# print(mfd3.print_document())
+# print(mfd3.get_printer_status())
+# class Clase:
+#     __numero = 127
 
 
+# instancia = Clase()
+
+# # print(instancia.__numero)
+
+# # Name Mangling
+# print(instancia._Clase__numero)
+
+########################################################
+
+# import random
+
+# class IBANValidationError(Exception):
+#     pass
+
+# class IBANDict(dict):
+#     def __setitem__(self, _key, _val):
+#         if IBANDict.validateIBAN(_key):
+#             super().__setitem__(_key, _val)
+
+#     def update(self, *args, **kwargs):
+#         for _key, _val in dict(*args, **kwargs).items():
+#             self.__setitem__(_key, _val)
+
+#     @staticmethod
+#     def validateIBAN(iban):
+#         iban = iban.replace(' ', '')
+
+#         if not iban.isalnum():
+#             raise IBANValidationError("You have entered invalid characters.")
+
+#         elif len(iban) < 15:
+#             raise IBANValidationError("IBAN entered is too short.")
+#         elif len(iban) > 31:
+#             raise IBANValidationError("IBAN entered is too long.")
+
+#         else:
+#             iban = (iban[4:] + iban[0:4]).upper()
+#             iban2 = ''
+#             for ch in iban:
+#                 if ch.isdigit():
+#                     iban2 += ch
+#                 else:
+#                     iban2 += str(10 + ord(ch) - ord('A'))
+#             ibann = int(iban2)
+
+#             if ibann % 97 != 1:
+#                 raise IBANValidationError("IBAN entered is invalid.")
+
+#             return True
+# my_dict = IBANDict()
+# keys = ['GB72 HBZU 7006 7212 1253 00', 'FR76 30003 03620 00020216907 50', 'DE02100100100152517108']
+
+# for key in keys:
+#     my_dict[key] = random.randint(0, 1000)
+
+# print('The my_dict dictionary contains:')
+# for key, value in my_dict.items():
+#     print("\t{} -> {}".format(key, value))
+
+# try:
+#     my_dict.update({'dummy_account': 100})
+# except IBANValidationError:
+#     print('IBANDict has protected your dictionary against incorrect data insertion')
+    
+##########################################
+
+# class RocketNotReadyError(Exception):
+#     pass
+
+# def personnel_check():
+#     try:
+#         print("\tThe captain's name is", crew[0])
+#         print("\tThe pilot's name is", crew[1])
+#         print("\tThe mechanic's name is", crew[2])
+#         print("\tThe navigator's name is", crew[3])
+
+#     except IndexError as alias:
+#         raise RocketNotReadyError('Crew is incomplete') from alias
+
+########################################################
+
+# crew = ['John', 'Mary', 'Mike']
+# print('Final check procedure')
+
+# try:
+
+#     personnel_check()
+
+# except RocketNotReadyError as e:
+
+#     crew.append("Cesar")
+#     personnel_check()
+
+
+####################################################
 
 
