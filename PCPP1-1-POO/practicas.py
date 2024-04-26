@@ -1008,4 +1008,201 @@
 
 ####################################################
 
+# import copy
+
+# class Example:
+#     def __init__(self):
+#         self.properties = ["112", "997"]
+#         print("Hello from __init__()")
+
+# a_example = Example()
+# b_example = copy.deepcopy(a_example)
+# print("Memory chunks:", id(a_example), id(b_example))
+# print("Same memory chunk?", a_example is b_example)
+# print()
+# print("Let's modify the movies list")
+# b_example.properties.append("911")
+# print('a_example.properties:', a_example.properties)
+# print('b_example.properties:', b_example.properties)
+
+
+######## Laboratorio #################################################
+
+# import copy
+
+# warehouse = list()
+# warehouse.append({'name': 'Lolly Pop', 'price': 0.4, 'weight': 133})
+# warehouse.append({'name': 'Licorice', 'price': 0.1, 'weight': 251})
+# warehouse.append({'name': 'Chocolate', 'price': 1, 'weight': 601})
+# warehouse.append({'name': 'Sours', 'price': 0.01, 'weight': 513})
+# warehouse.append({'name': 'Hard candies', 'price': 0.3, 'weight': 433})
+
+# new_warehouse = copy.deepcopy(warehouse)
+# for item in new_warehouse:
+#     if item['weight'] > 300:
+#         item['price'] *= 0.8
+
+# print('*'*20)
+# print('Source list of candies')
+# for item in warehouse:
+#     print(item)
+
+# print('*'*20)
+# print('Price proposal')
+# for item in new_warehouse:
+#     print(item)
+
+
+############# Serialización / Deserialización (pickle)######################
+
+## Serializar
+# import pickle
+
+# a_dict = dict()
+# a_dict['EUR'] = {'code':'Euro', 'symbol': '€'}
+# a_dict['GBP'] = {'code':'Pounds sterling', 'symbol': '£'}
+# a_dict['USD'] = {'code':'US dollar', 'symbol': '$'}
+# a_dict['JPY'] = {'code':'Japanese yen', 'symbol': '¥'}
+
+# a_list = ['a', 123, [10, 100, 1000]]
+
+# with open('multidata.pckl', 'wb') as file_out:
+#     pickle.dump(a_dict, file_out)
+#     pickle.dump(a_list, file_out)
+
+## Deserializar
+
+# import pickle
+
+# with open('multidata.pckl', 'rb') as file_in:
+#     data1 = pickle.load(file_in)
+#     data2 = pickle.load(file_in)
+
+# print(type(data1))
+# print(data1)
+# print(type(data2))
+# print(data2)
+
+
+
+##### Laboratorios ##################################
+# 2.8.1.7 - composición
+# 3.1.1.12 - excepciones
+# 2.7.1.5 - encapsulación
+# 2.8.1.7 - composición
+# 3.1.1.12 - excepciones
+# 4.1.1.12  y 4.1.1.13 - shallow y deep copy
+# 2.7.1.5 - encapsulación
+# 2.8.1.7 - composición
+# 3.1.1.12 - excepciones
+# 4.1.1.12  y 4.1.1.13 - shallow y deep copy
+
+#### Métodos para prevenir que se acceda con el método mangle ###
+
+# __getatrr__
+# __setatrr__
+
+# La lógica: 
+# if nombre empieza por “_Clase” entonces generar excepción
+
+###################################
+
+# import copy
+
+# class Delicacy:
+#     def __init__(self, name, price, weight):
+#         self.name = name
+#         self.price = price
+#         self.weight = weight
+
+#     def __str__(self):
+#         return 'item:{}, price:{}, total weight: {}'.format(
+#             self.name, self.price, self.weight
+#             )
+
+# warehouse = list()
+
+# warehouse.append(Delicacy('Lolly Pop', 0.4, 133))
+# warehouse.append(Delicacy('Licorice', 0.1, 251))
+# warehouse.append(Delicacy('Chocolate', 1, 601))
+# warehouse.append(Delicacy('Sours', 0.01, 513))
+# warehouse.append(Delicacy('Hard candies', 0.3, 433))
+
+# new_warehouse = copy.copy(warehouse)
+# for item in new_warehouse:
+#     if item.weight > 300:
+#         item.price *= 0.8
+
+# print('*' * 20)
+# print('Source list of candies')
+# for item in warehouse:
+#     print(item)
+
+# print('*' * 20)
+# print('Price proposal')
+# for item in new_warehouse:
+#     print(item)
+    
+##############################################
+
+# import pickle
+
+# a_list = ['a', 123, [10, 100, 1000]]
+# bytes = pickle.dumps(a_list)
+# print('Intermediate object type, used to preserve data:', type(bytes))
+
+# # now pass 'bytes' to appropriate driver
+
+# # therefore when you receive a bytes object from an appropriate driver you can deserialize it
+# b_list = pickle.loads(bytes)
+# print('A type of deserialized object:', type(b_list))
+# print('Contents:', b_list)
+
+####################################################
+
+# import pickle
+
+# def f1():
+#     print('Hello from the jar!')
+
+# with open('function.pckl', 'wb') as file_out:
+#     pickle.dump(f1, file_out)
+    
+
+# import pickle
+
+# with open('function.pckl', 'rb') as file_in:
+#     data = pickle.load(file_in)
+
+# print(type(data))
+# print(data)
+# data()
+
+########## Módulo shelve ################################################
+
+# Value	Meaning
+# 'r'	Open existing database for reading only
+# 'w'	Open existing database for reading and writing
+# 'c'	Open database for reading and writing, creating it if it doesn’t exist (this is a default value)
+# 'n'	Always create a new, empty database, open for reading and writing
+
+
+# import shelve
+
+# shelve_name = 'first_shelve.shlv'
+
+# my_shelve = shelve.open(shelve_name, flag='c')
+# my_shelve['EUR'] = {'code':'Euro', 'symbol': '€'}
+# my_shelve['GBP'] = {'code':'Pounds sterling', 'symbol': '£'}
+# my_shelve['USD'] = {'code':'US dollar', 'symbol': '$'}
+# my_shelve['JPY'] = {'code':'Japanese yen', 'symbol': '¥'}
+# my_shelve.close()
+
+# new_shelve = shelve.open(shelve_name)
+# print(new_shelve['USD'])
+# new_shelve.close()
+
+
+#############################
+
 
