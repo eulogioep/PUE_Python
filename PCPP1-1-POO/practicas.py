@@ -1203,6 +1203,161 @@
 # new_shelve.close()
 
 
-#############################
+### Zen de Python ##########################
 
+# import this
+
+####### Metaprogramación ###########################
+
+# Las Metaclases crean clases. Son los moldes de las clases, como las
+# clases son los moldes de los objetos.
+
+# Metaclases --> Clase --> Objeto
+
+# class Dog:
+#     pass
+
+
+# age = 10
+# codes = [33, 92]
+# dog = Dog()
+
+# print(type(age))
+# print(type(codes))
+# print(type(dog))
+# print(type(Dog))
+
+
+#####################################
+
+# class Dog:
+#     pass
+
+# dog = Dog()
+# print('"dog" is an object of class named:', Dog.__name__)
+# print()
+# print('class "Dog" is an instance of:', Dog.__class__)
+# print('instance "dog" is an instance of:', dog.__class__)
+# print()
+# print('class "Dog" is  ', Dog.__bases__)
+# print()
+# print('class "Dog" attributes:', Dog.__dict__)
+# print('object "dog" attributes:', dog.__dict__)
+
+
+#########################################
+
+# def bark(self):
+#     print('edad:', self.age)
+#     print('Woof, woof')
+
+# class Animal:
+#     def feed(self):
+#         print('It is feeding time!')
+
+# Dog = type('Dog', (Animal, ), {'age':0, 'bark':bark})
+
+# print('The class name is:', Dog.__name__)
+# print('The class is an instance of:', Dog.__class__)
+# print('The class is based on:', Dog.__bases__)
+# print('The class attributes are:', Dog.__dict__)
+
+# doggy = Dog()
+# doggy.feed()
+# doggy.bark()
+
+####### Laboratorio ################################
+
+# import time
+
+# def get_class_instantiation_time(self):
+#     return self.class_instantiation_time
+
+# class CleanCodeGuard(type):
+#     classes_created = []
+
+#     def __new__(mcs, name, bases, dictionary):
+#         if 'get_class_instantiation_time' not in dictionary:
+#             dictionary['get_class_instantiation_time'] = get_class_instantiation_time
+#         obj = super().__new__(mcs, name, bases, dictionary)
+
+#         obj.class_instantiation_time = time.time()
+#         CleanCodeGuard.classes_created.append(name)
+#         time.sleep(1)
+#         return obj
+
+# class My_Class1(metaclass=CleanCodeGuard):
+#     pass
+
+# class My_Class2(metaclass=CleanCodeGuard):
+#     pass
+
+# my_object1 = My_Class1()
+# print(my_object1.get_class_instantiation_time())
+
+# my_object2 = My_Class2()
+# print(my_object2.get_class_instantiation_time())
+
+# print(CleanCodeGuard.classes_created)
+
+
+##################################################
+
+# from datetime import datetime 
+# import time
+
+# def recuperar_tiempo_de_instanciacion(self):
+#     return self.tiempo_de_instanciacion
+
+# class CodigoLimpio(type):
+    
+#     def __new__(mcs, nombre_clase, bases, diccionario):
+      
+#         clase = super().__new__(mcs, nombre_clase, bases, diccionario)
+
+#         clase.tiempo_de_instanciacion = nombre_clase + " creada a las " + datetime.now().strftime("%H:%M:%S:%f")
+
+#         time.sleep(1)
+#         return clase
+
+
+########################################################
+
+
+# from datetime import datetime 
+# import time
+
+# def recuperar_tiempo_de_creacion_de_la_clase(self):
+#     return self.tiempo_de_creacion_de_la_clase
+
+# class CodigoLimpio(type):
+#     clases_creadas = []
+
+#     def __new__(mcs, nombre_clase, bases, diccionario):
+
+#         if 'recuperar_tiempo_de_creacion_de_la_clase' not in diccionario:
+#             diccionario['recuperar_tiempo_de_creacion_de_la_clase'] = recuperar_tiempo_de_creacion_de_la_clase        
+
+#         clase = super().__new__(mcs, nombre_clase, bases, diccionario)
+
+#         clase.tiempo_de_creacion_de_la_clase = nombre_clase + " creada a las " + datetime.now().strftime("%H:%M:%S:%f")
+
+#         CodigoLimpio.clases_creadas.append(nombre_clase)
+#         time.sleep(1)
+#         return clase
+
+# class Clase1(metaclass = CodigoLimpio):
+#     pass
+
+# class Clase2(metaclass = CodigoLimpio):
+#     pass
+# objeto1 = Clase1()
+# print(objeto1.recuperar_tiempo_de_creacion_de_la_clase())
+
+# objeto2 = Clase2()
+# print(objeto2.recuperar_tiempo_de_creacion_de_la_clase())
+
+# print(CodigoLimpio.clases_creadas)
+
+###########################################################
 
