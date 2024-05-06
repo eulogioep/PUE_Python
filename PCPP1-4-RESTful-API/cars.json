@@ -32,11 +32,18 @@
       "id": "6",
       "brand": "Mercedes Benz",
       "model": "300SL",
-      "production_year": 2000,
+      "production_year": 1967,
       "convertible": true
     },
     {
       "id": "7",
+      "brand": "Porsche",
+      "model": "911",
+      "production_year": 1963,
+      "convertible": false
+    },
+    {
+      "id": 7,
       "brand": "Porsche",
       "model": "911",
       "production_year": 1963,
