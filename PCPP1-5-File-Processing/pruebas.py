@@ -133,54 +133,106 @@
 
 ###### Laboratorio Completo
 
-import sqlite3
+# import sqlite3
 
 
-class Todo:
-    def __init__(self):
-        self.conn = sqlite3.connect('todo.db')
-        self.c = self.conn.cursor()
-        self.create_tasks_table()
+# class Todo:
+#     def __init__(self):
+#         self.conn = sqlite3.connect('todo.db')
+#         self.c = self.conn.cursor()
+#         self.create_tasks_table()
 
-    def create_tasks_table(self):
-        self.c.execute('''CREATE TABLE IF NOT EXISTS tasks (
-                     id INTEGER PRIMARY KEY,
-                     name TEXT NOT NULL,
-                     priority INTEGER NOT NULL
-                     );''')
+#     def create_tasks_table(self):
+#         self.c.execute('''CREATE TABLE IF NOT EXISTS tasks (
+#                      id INTEGER PRIMARY KEY,
+#                      name TEXT NOT NULL,
+#                      priority INTEGER NOT NULL
+#                      );''')
 
-    def add_task(self):
-        name = input('Enter task name: ')
-        priority = int(input('Enter priority: '))
+#     def add_task(self):
+#         name = input('Nombre de la Tarea: ')
+#         priority = int(input('Prioridad: '))
 
-        if len(name) == 0 or priority < 1:
-            return
+#         if len(name) == 0 or priority < 1:
+#             return
 
-        if self.find_task(name) is not None:
-            return
+#         if self.find_task(name) is not None:
+#             return
 
-        self.c.execute(
-            'INSERT INTO tasks (name, priority) VALUES (?,?)',
-            (name, priority))
-        self.conn.commit()
+#         self.c.execute(
+#             'INSERT INTO tasks (name, priority) VALUES (?,?)',
+#             (name, priority))
+#         self.conn.commit()
 
-    def find_task(self, name):
-        for row in self.c.execute('SELECT * FROM tasks'):
-            if row[1] == name:
-                return row
+#     def find_task(self, name):
+#         for row in self.c.execute('SELECT * FROM tasks'):
+#             if row[1] == name:
+#                 return row
 
-        return None
+#         return None
 
-    def show_tasks(self):
-        for row in self.c.execute('SELECT * FROM tasks'):
-            print(row)
+#     def show_tasks(self):
+#         for row in self.c.execute('SELECT * FROM tasks'):
+#             print(row)
 
-app = Todo()
-app.add_task()
-app.show_tasks()
+# app = Todo()
+# app.add_task()
+# app.show_tasks()
 
 
-#################
+##### Versión del laboratorio más eficiente
+
+# import sqlite3
+
+# class Todo:
+#     def __init__(self):
+#         self.conn = sqlite3.connect('todo.db')
+#         self.c = self.conn.cursor()
+#         self.create_tasks_table()
+
+#     def create_tasks_table(self):
+#         self.c.execute('''CREATE TABLE IF NOT EXISTS tasks (
+#                      id INTEGER PRIMARY KEY,
+#                      name TEXT NOT NULL,
+#                      priority INTEGER NOT NULL
+#                      );''')
+
+#     def add_task(self):
+#         name = input('Enter task name: ')
+#         priority = int(input('Enter priority: '))
+
+#         if len(name) == 0 or priority < 1:
+#             return
+
+#         if self.find_task(name) is not None:
+#             print("No puedes crear una tarea con el mismo nombre que alguna ya existente")
+#             return
+
+#         self.c.execute(
+#             'INSERT INTO tasks (name, priority) VALUES (?,?)',
+#             (name, priority))
+#         self.conn.commit()
+#     def find_task(self, name):
+#         self.c.execute('SELECT count(*) FROM tasks WHERE name = ?', (name,))
+#         recuento = self.c.fetchone()[0]
+
+#         if recuento:
+#             print('Ya existe una tarea con ese nombre')
+#             return True
+
+#         return None
+
+#     def show_tasks(self):
+#         for row in self.c.execute('SELECT * FROM tasks'):
+#             print(row)
+
+# app = Todo()
+# app.add_task()
+# app.show_tasks()
+
+# #################
+
+
 
 
 
