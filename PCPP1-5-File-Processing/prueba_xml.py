@@ -100,5 +100,112 @@
 # forecast_xml_parser.parse('forecast.xml')
 
 
-#################################################
+############# Modificar XML ####################################
+
+# import xml.etree.ElementTree as ET
+
+# tree = ET.parse('books.xml')
+# root = tree.getroot()
+# for child in root:
+#     child.tag = 'movie'
+#     print(child.tag, child.attrib)
+#     for sub_child in child:
+#         print(sub_child.tag, ':', sub_child.text)
+
+
+######## Mod cont. ################
+
+# import xml.etree.ElementTree as ET
+
+# tree = ET.parse('books.xml')
+# root = tree.getroot()
+# for child in root:
+#     child.tag = 'movie'
+#     child.remove(child.find('author'))
+#     child.remove(child.find('year'))
+#     child.set('rate', '5')
+#     print(child.tag, child.attrib)
+#     for sub_child in child:
+#         print(sub_child.tag, ':', sub_child.text)
+
+
+#### cont. #####
+
+# import xml.etree.ElementTree as ET
+
+# tree = ET.parse('books.xml')
+# root = tree.getroot()
+# for child in root:
+#     child.tag = 'movie'
+#     child.remove(child.find('author'))
+#     child.remove(child.find('year'))
+#     child.set('rate', '5')
+#     print(child.tag, child.attrib)
+#     for sub_child in child:
+#         print(sub_child.tag, ':', sub_child.text)
+
+# tree.write('movies.xml', 'UTF-8', True)
+
+
+######## Crear XML ##########################
+
+# import xml.etree.ElementTree as ET
+
+# root = ET.Element('data')
+# movie_1 = ET.SubElement(root, 'movie', {'title': 'The Little Prince', 'rate': '5'})
+# movie_2 = ET.SubElement(root, 'movie', {'title': 'Hamlet', 'rate': '5'})
+# ET.dump(root)
+
+
+######## Labortario. Crear XML ###########################
+
+# import xml.etree.ElementTree as ET
+
+# class XmlTreeHelper:
+#     def add_tags_with_text(self, parent, tags):
+#         elements = []
+#         for tag in tags:
+#             element = ET.SubElement(parent, tag)
+#             element.text = tags[tag]
+#             elements.append(element)
+#         return elements
+
+# root = ET.Element('shop')
+
+# category = ET.SubElement(root, 'category', {'name': 'Vegan Products'})
+
+# product_1 = ET.SubElement(category, 'product', {'name': 'Good Morning Sunshine'})
+# product_2 = ET.SubElement(category, 'product', {'name': 'Spaghetti Veganietto'})
+# product_3 = ET.SubElement(category, 'product', {'name': 'Fantastic Almond Milk'})
+
+# xml_tree_helper = XmlTreeHelper()
+
+# xml_tree_helper.add_tags_with_text(product_1, {
+#     'type': 'cereals',
+#     'producer': 'OpenEDG Foods Limited',
+#     'price': '9.90',
+#     'currency': 'USD'
+# })
+
+# xml_tree_helper.add_tags_with_text(product_2, {
+#     'type': 'pasta',
+#     'producer': 'Programmers Eat Pasta Gmbh',
+#     'price': '14.49',
+#     'currency': 'EUR'
+# })
+
+# xml_tree_helper.add_tags_with_text(product_3, {
+#     'type': 'beverages',
+#     'producer': 'Drinks4Coders Inc.',
+#     'price': '19.75',
+#     'currency': 'USD'
+# })
+
+# # ET.dump(root)
+
+# tree = ET.ElementTree(root)
+# tree.write('shop.xml', 'UTF-8', True)
+
+
+##################################
 
